@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import { Code, ShoppingCart, Cloud, CheckCircle } from 'lucide-react';
+import WebsiteContent from '../components/Websitecontent';
 
 export default function Websites() {
   const location = useLocation();
@@ -27,7 +28,7 @@ export default function Websites() {
     },
   ];
 
-  const techStack = ['React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'TypeScript'];
+  const techStack = ['React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'TypeScript', 'Express', 'MongoDB', 'PostgreSQL', 'AWS', 'Wordpress', 'Shopify', 'Stripe', 'PayPal', 'GraphQL', 'REST APIs'];
 
   const handleHashLink = (hash) => {
     if (location.pathname === '/') {
@@ -60,17 +61,17 @@ export default function Websites() {
       <section className="relative z-10 py-20 px-6 bg-white md:bg-white/50 md:backdrop-blur-sm">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-[#071E26] text-center mb-16">What We Build</h2>
+
+          {/* Cards — no hover effect, no Get Started button inside */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {offerings.map((item, idx) => (
-              <div key={idx} className="bg-white md:bg-white/80 md:backdrop-blur-sm border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+              <div key={idx} className="bg-white md:bg-white/80 md:backdrop-blur-sm border border-gray-100 rounded-2xl p-8">
                 <div className="bg-[#F0F7F8] w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-[#071E26] mb-4">{item.title}</h3>
-                <p className="text-gray-600 mb-8 leading-relaxed">
-                  {item.desc}
-                </p>
-                <ul className="space-y-3 mb-8">
+                <p className="text-gray-600 mb-8 leading-relaxed">{item.desc}</p>
+                <ul className="space-y-3">
                   {item.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-3 text-[#071E26] font-medium">
                       <CheckCircle size={20} className="text-[#17A2B8]" />
@@ -78,31 +79,49 @@ export default function Websites() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={() => handleHashLink('contact')}
-                  className="bg-[#071E26] text-white px-6 py-3 rounded-full font-bold hover:bg-[#0d2f3a] transition-colors duration-300 cursor-pointer border-none"
-                >
-                  Get Started
-                </button>
               </div>
             ))}
+          </div>
+
+          {/* Single Get Started button below all cards */}
+          <div className="flex justify-center mt-12">
+            <button
+              onClick={() => handleHashLink('contact')}
+              className="bg-[#071E26] text-white px-10 py-4 rounded-full font-bold border-2 border-[#071E26] hover:bg-white hover:text-[#071E26] transition-all duration-300 cursor-pointer"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       </section>
 
       {/* Tech Stack Showcase */}
-      <section className="relative z-10 py-20 px-6">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#071E26] mb-12">Our Technology Stack</h2>
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-            {techStack.map((tech, idx) => (
-              <div key={idx} className="bg-white border border-gray-200 rounded-xl px-6 py-3 flex items-center gap-2 font-medium text-[#071E26] hover:border-[#071E26] hover:shadow-md transition-all duration-300">
-                {tech}
-              </div>
-            ))}
-          </div>
+<section className="relative z-10 py-20 px-6 overflow-hidden">
+  <div className="container mx-auto text-center mb-12">
+    <h2 className="text-3xl md:text-4xl font-bold text-[#071E26]">Our Technology Stack</h2>
+  </div>
+
+  {/* Moving ticker */}
+  <div className="relative w-full overflow-hidden">
+    {/* Left fade */}
+    <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+    {/* Right fade */}
+    <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+    <div className="flex w-max animate-marquee gap-4">
+      {[...techStack, ...techStack].map((tech, idx) => (
+        <div
+          key={idx}
+          className="bg-white border border-gray-200 rounded-xl px-6 py-3 flex items-center gap-2 font-medium text-[#071E26] hover:border-[#071E26] hover:shadow-md transition-all duration-300 whitespace-nowrap cursor-default"
+        >
+          {tech}
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+<WebsiteContent />
 
       {/* CTA Section */}
       <section className="relative z-10 py-20 px-6">
@@ -114,7 +133,7 @@ export default function Websites() {
             </p>
             <button
               onClick={() => handleHashLink('contact')}
-              className="bg-white text-[#071E26] px-8 py-4 rounded-full font-bold hover:bg-[#F0F7F8] transition-colors duration-300 cursor-pointer border-none"
+              className="bg-white text-[#071E26] px-8 py-4 rounded-full font-bold border-2 border-white hover:bg-transparent hover:text-white transition-all duration-300 cursor-pointer"
             >
               Start Your Project
             </button>
