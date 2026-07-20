@@ -1,9 +1,23 @@
-import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
 // Import the footer logo from your assets folder
 import logoFooterImg from "../assets/logof.png";
 
 export default function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Reuses your logic from Header to cross-page navigate and scroll
+  const handleHashLink = (hash) => {
+    if (location.pathname === '/') {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      sessionStorage.setItem('scrollTo', hash);
+      navigate('/');
+    }
+  };
+
   return (
     <footer className="relative z-20 bg-[#071E26] text-white pt-16 pb-8">
       <div className="container mx-auto px-6">
@@ -18,8 +32,39 @@ export default function Footer() {
               />
             </Link>
             <p className="text-white/80 leading-relaxed">
-              Engineering premium digital experiences that transform businesses. We build bespoke websites and mobile applications designed for scale.
+              We build custom web and mobile applications with clean code and modern design to help your business stand out.
             </p>
+            <div className="flex items-center gap-3 mt-2">
+              <a
+                href="https://www.facebook.com/people/5arcs/61592066397527/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#17A2B8] transition-colors duration-300"
+              >
+                <Facebook size={18} />
+              </a>
+              
+              <a
+                href="https://www.instagram.com/5arcs_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#17A2B8] transition-colors duration-300"
+              >
+                <Instagram size={18} />
+              </a>
+              
+              <a
+                href="https://www.linkedin.com/company/5arcs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#17A2B8] transition-colors duration-300"
+              >
+                <Linkedin size={18} />
+              </a>
+            </div>
           </div>
 
           {/* Col 2 */}
@@ -27,8 +72,22 @@ export default function Footer() {
             <h4 className="font-semibold text-lg mb-4 text-[#F0F7F8]">Quick Links</h4>
             <ul className="space-y-3">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors duration-300">Home</Link></li>
-              <li><a href="/#about" className="text-white/80 hover:text-white transition-colors duration-300">About</a></li>
-              <li><a href="/#contact" className="text-white/80 hover:text-white transition-colors duration-300">Contact</a></li>
+              <li>
+                <button 
+                  onClick={() => handleHashLink('about')} 
+                  className="text-white/80 hover:text-white transition-colors duration-300 bg-transparent border-none p-0 cursor-pointer text-left block w-full"
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => handleHashLink('contact')} 
+                  className="text-white/80 hover:text-white transition-colors duration-300 bg-transparent border-none p-0 cursor-pointer text-left block w-full"
+                >
+                  Contact
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -48,7 +107,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-white/80">
                 <Mail size={20} className="text-[#17A2B8]" />
-                <a href="mailto:hello@5arcs.com" className="hover:text-white transition-colors">hello@5arcs.com</a>
+                <a href="mailto:info@5arcs.net" className="hover:text-white transition-colors">info@5arcs.net</a>
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Phone size={20} className="text-[#17A2B8]" />

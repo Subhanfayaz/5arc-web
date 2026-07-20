@@ -1,9 +1,13 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import { Smartphone, Repeat, Rocket, Search, Palette, Code, ShieldCheck } from 'lucide-react';
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
 
 
 export default function Apps() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const offerings = [
     {
       title: 'iOS & Android Apps',
@@ -53,6 +57,16 @@ export default function Apps() {
     },
   ];
 
+  const handleHashLink = (hash) => {
+    if (location.pathname === '/') {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      sessionStorage.setItem('scrollTo', hash);
+      navigate('/');
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-white">
       <ParticlesBackground variant="bokeh" />
@@ -84,7 +98,7 @@ export default function Apps() {
                 <p className="text-gray-600 mb-8 leading-relaxed">
                   {item.desc}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-8">
                   {item.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-3 text-[#071E26] font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#17A2B8]" />
@@ -92,6 +106,12 @@ export default function Apps() {
                     </li>
                   ))}
                 </ul>
+                <button
+                  onClick={() => handleHashLink('contact')}
+                  className="bg-[#071E26] text-white px-6 py-3 rounded-full font-bold hover:bg-[#0d2f3a] transition-colors duration-300 cursor-pointer border-none"
+                >
+                  Get Started
+                </button>
               </div>
             ))}
           </div>
@@ -154,9 +174,12 @@ export default function Apps() {
             <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
               Let's turn your concept into a product that users can't put down.
             </p>
-            <a href="/#contact" className="inline-block bg-white text-[#071E26] px-8 py-4 rounded-full font-bold hover:bg-[#F0F7F8] transition-colors duration-300">
+            <button
+              onClick={() => handleHashLink('contact')}
+              className="bg-white text-[#071E26] px-8 py-4 rounded-full font-bold hover:bg-[#F0F7F8] transition-colors duration-300 cursor-pointer border-none"
+            >
               Get Started
-            </a>
+            </button>
           </div>
         </div>
       </section>

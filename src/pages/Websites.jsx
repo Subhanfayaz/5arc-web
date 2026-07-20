@@ -1,7 +1,11 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
-import { Code, ShoppingCart, FileText, CheckCircle } from 'lucide-react';
+import { Code, ShoppingCart, Cloud, CheckCircle } from 'lucide-react';
 
 export default function Websites() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const offerings = [
     {
       title: 'Custom Web Development',
@@ -16,14 +20,24 @@ export default function Websites() {
       features: ['Headless Commerce', 'Payment Integration', 'Inventory Systems'],
     },
     {
-      title: 'CMS Platforms',
-      icon: <FileText size={32} className="text-[#071E26]" />,
-      desc: 'User-friendly content management systems that empower your team to update, publish, and manage content without touching a single line of code.',
-      features: ['WordPress', 'Sanity CMS', 'Strapi'],
+      title: 'SaaS Development',
+      icon: <Cloud size={32} className="text-[#071E26]" />,
+      desc: 'Scalable, multi-tenant SaaS platforms built for reliability and growth—from MVP to full-scale product, with subscription billing and cloud-native architecture baked in.',
+      features: ['Multi-tenant Architecture', 'Stripe Billing', 'AWS/GCP'],
     },
   ];
 
   const techStack = ['React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'TypeScript'];
+
+  const handleHashLink = (hash) => {
+    if (location.pathname === '/') {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      sessionStorage.setItem('scrollTo', hash);
+      navigate('/');
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-white">
@@ -56,7 +70,7 @@ export default function Websites() {
                 <p className="text-gray-600 mb-8 leading-relaxed">
                   {item.desc}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-8">
                   {item.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-3 text-[#071E26] font-medium">
                       <CheckCircle size={20} className="text-[#17A2B8]" />
@@ -64,6 +78,12 @@ export default function Websites() {
                     </li>
                   ))}
                 </ul>
+                <button
+                  onClick={() => handleHashLink('contact')}
+                  className="bg-[#071E26] text-white px-6 py-3 rounded-full font-bold hover:bg-[#0d2f3a] transition-colors duration-300 cursor-pointer border-none"
+                >
+                  Get Started
+                </button>
               </div>
             ))}
           </div>
@@ -92,9 +112,12 @@ export default function Websites() {
             <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
               Let's discuss your web project and create something remarkable together.
             </p>
-            <a href="/#contact" className="inline-block bg-white text-[#071E26] px-8 py-4 rounded-full font-bold hover:bg-[#F0F7F8] transition-colors duration-300">
+            <button
+              onClick={() => handleHashLink('contact')}
+              className="bg-white text-[#071E26] px-8 py-4 rounded-full font-bold hover:bg-[#F0F7F8] transition-colors duration-300 cursor-pointer border-none"
+            >
               Start Your Project
-            </a>
+            </button>
           </div>
         </div>
       </section>

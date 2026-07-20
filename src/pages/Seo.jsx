@@ -1,7 +1,11 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import { Search, FileText, Settings, BarChart3, TrendingUp, Target, CheckCircle, ArrowUpRight } from 'lucide-react';
 
 export default function Seo() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const offerings = [
     {
       title: 'On-Page SEO',
@@ -55,6 +59,16 @@ export default function Seo() {
     'Screaming Frog', 'Moz Pro', 'Surfer SEO', 'Google PageSpeed',
   ];
 
+  const handleHashLink = (hash) => {
+    if (location.pathname === '/') {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      sessionStorage.setItem('scrollTo', hash);
+      navigate('/');
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-white">
       <ParticlesBackground variant="network" />
@@ -86,7 +100,7 @@ export default function Seo() {
                 <p className="text-gray-600 mb-8 leading-relaxed">
                   {item.desc}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-3 mb-8">
                   {item.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-3 text-[#071E26] font-medium">
                       <CheckCircle size={20} className="text-[#17A2B8]" />
@@ -94,6 +108,12 @@ export default function Seo() {
                     </li>
                   ))}
                 </ul>
+                <button
+                  onClick={() => handleHashLink('contact')}
+                  className="bg-[#071E26] text-white px-6 py-3 rounded-full font-bold hover:bg-[#0d2f3a] transition-colors duration-300 cursor-pointer border-none"
+                >
+                  Get Started
+                </button>
               </div>
             ))}
           </div>
@@ -154,9 +174,12 @@ export default function Seo() {
             <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
               Let's build an SEO strategy that drives real, measurable growth for your business.
             </p>
-            <a href="/#contact" className="inline-block bg-white text-[#071E26] px-8 py-4 rounded-full font-bold hover:bg-[#F0F7F8] transition-colors duration-300">
+            <button
+              onClick={() => handleHashLink('contact')}
+              className="bg-white text-[#071E26] px-8 py-4 rounded-full font-bold hover:bg-[#F0F7F8] transition-colors duration-300 cursor-pointer border-none"
+            >
               Get a Free SEO Audit
-            </a>
+            </button>
           </div>
         </div>
       </section>

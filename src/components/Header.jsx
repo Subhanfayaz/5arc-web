@@ -22,7 +22,19 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close dropdown when clicking outside
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const pendingHash = sessionStorage.getItem('scrollTo');
+      if (pendingHash) {
+        sessionStorage.removeItem('scrollTo');
+        setTimeout(() => {
+          const el = document.getElementById(pendingHash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -45,7 +57,8 @@ export default function Header() {
       const el = document.getElementById(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     } else {
-      navigate('/#' + hash);
+      sessionStorage.setItem('scrollTo', hash);
+      navigate('/');
     }
   };
 
@@ -97,9 +110,7 @@ export default function Header() {
 
             {/* Dropdown Panel */}
             <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 transition-all duration-300 origin-top ${servicesOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
-              {/* Arrow */}
               <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-[#071E26]/95 border-l border-t border-white/15"></div>
-              
               <div className="bg-[#071E26]/95 backdrop-blur-xl border border-white/15 rounded-xl shadow-2xl overflow-hidden">
                 {serviceLinks.map((service) => (
                   <Link
@@ -125,14 +136,7 @@ export default function Header() {
 
           <button
             onClick={() => handleHashLink('contact')}
-            className="text-white/80 hover:text-white transition-colors duration-300 font-medium cursor-pointer bg-transparent border-none"
-          >
-            Contact
-          </button>
-
-          <button
-            onClick={() => handleHashLink('contact')}
-            className="bg-white text-[#071E26] px-6 py-2 rounded-full font-semibold hover:bg-[#F0F7F8] transition-colors duration-300"
+            className="bg-white text-[#071E26] px-6 py-2 rounded-full font-semibold border-2 border-white hover:bg-[#071E26] hover:text-white transition-all duration-300 cursor-pointer"
           >
             Get in Touch
           </button>
@@ -188,14 +192,7 @@ export default function Header() {
 
           <button
             onClick={() => handleHashLink('contact')}
-            className="text-white/80 text-lg font-medium py-2 text-left bg-transparent border-none cursor-pointer"
-          >
-            Contact
-          </button>
-
-          <button
-            onClick={() => handleHashLink('contact')}
-            className="bg-white text-[#071E26] text-center px-6 py-3 rounded-full font-semibold mt-2"
+            className="bg-white text-[#071E26] text-center px-6 py-3 rounded-full font-semibold mt-2 border-2 border-white hover:bg-[#071E26] hover:text-white transition-all duration-300 cursor-pointer"
           >
             Get in Touch
           </button>
