@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
+import { useTheme } from '../ThemeContext';
 
 /* ------------------------------------------------------------------ */
 /*  Detect touch / mobile once at module level (avoids re-checks)     */
@@ -202,18 +203,49 @@ export default function ParticlesBackground({ variant = 'constellation', classNa
     }).then(() => setInit(true));
   }, [mobile]);
 
+  const { darkMode } = useTheme();
+
   const options = useMemo(() => {
-    if (variant === 'bokeh') return bokehConfig;
-    if (variant === 'network') return networkConfig;
-    return constellationConfig;
-  }, [variant]);
+    let baseConfig;
+    if (variant === 'bokeh') {
+      baseConfig = JSON.parse(JSON.stringify(bokehConfig));
+      if (darkMode) {
+        baseConfig.particles.color.value = '#F0F7F8';
+        baseConfig.particles.opacity.value = { min: 0.05, max: 0.15 };
+      }
+    } else if (variant === 'network') {
+      baseConfig = JSON.parse(JSON.stringify(networkConfig));
+      if (darkMode) {
+        baseConfig.particles.color.value = ['#17A2B8', '#F0F7F8', '#5BC0BE'];
+      }
+    } else {
+      baseConfig = JSON.parse(JSON.stringify(constellationConfig));
+      if (darkMode) {
+        baseConfig.particles.color.value = '#F0F7F8';
+        baseConfig.particles.links.color = '#F0F7F8';
+        baseConfig.particles.opacity.value = 0.15;
+        baseConfig.particles.links.opacity = 0.15;
+      }
+    }
+    return baseConfig;
+  }, [variant, darkMode]);
 
   // Mobile: render a lightweight CSS-only gradient (zero GPU/JS cost)
   if (mobile) {
+    let bgStyle = mobileFallbackStyles[variant] || mobileFallbackStyles.constellation;
+    if (darkMode) {
+      if (variant === 'constellation') {
+        bgStyle = { ...bgStyle, background: 'radial-gradient(ellipse at 30% 20%, rgba(240,247,248,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(240,247,248,0.04) 0%, transparent 60%)' };
+      } else if (variant === 'bokeh') {
+        bgStyle = { ...bgStyle, background: 'radial-gradient(ellipse at 20% 50%, rgba(240,247,248,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 30%, rgba(240,247,248,0.06) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(240,247,248,0.04) 0%, transparent 50%)' };
+      } else if (variant === 'network') {
+        bgStyle = { ...bgStyle, background: 'radial-gradient(ellipse at 40% 30%, rgba(23,162,184,0.08) 0%, transparent 55%), radial-gradient(ellipse at 60% 70%, rgba(91,192,190,0.06) 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(240,247,248,0.05) 0%, transparent 50%)' };
+      }
+    }
     return (
       <div
         className={className}
-        style={mobileFallbackStyles[variant] || mobileFallbackStyles.constellation}
+        style={bgStyle}
         aria-hidden="true"
       />
     );

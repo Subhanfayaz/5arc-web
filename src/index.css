@@ -56,3 +56,83 @@ body {
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
+
+/* --- Dark Theme Overrides --- */
+html[data-theme='dark'] body,
+html[data-theme='dark'] .bg-white {
+  background-color: #06070C !important;
+  color: #F0F7F8 !important;
+}
+
+html[data-theme='dark'] .text-\[\#071E26\] {
+  color: #F0F7F8 !important;
+}
+
+html[data-theme='dark'] .bg-\[\#F0F7F8\] {
+  background-color: #0E1620 !important;
+}
+
+html[data-theme='dark'] .bg-\[\#E7F2F4\] {
+  background-color: #12242D !important;
+}
+
+html[data-theme='dark'] .text-gray-600 {
+  color: #9CA3AF !important;
+}
+
+html[data-theme='dark'] .text-gray-700 {
+  color: #CBD5E0 !important;
+}
+
+html[data-theme='dark'] .text-gray-900 {
+  color: #F8FAFC !important;
+}
+
+html[data-theme='dark'] .border-gray-100 {
+  border-color: #1A2530 !important;
+}
+
+html[data-theme='dark'] .border-gray-200 {
+  border-color: #2D3748 !important;
+}
+
+html[data-theme='dark'] .bg-gray-50 {
+  background-color: #0B111A !important;
+}
+
+html[data-theme='dark'] .from-white {
+  --tw-gradient-from: #06070C var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(6, 7, 12, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+html[data-theme='dark'] .to-\[\#F0F7F8\] {
+  --tw-gradient-to: #0E1620 var(--tw-gradient-to-position) !important;
+}
+
+html[data-theme='dark'] .bg-white\/50,
+html[data-theme='dark'] .md\:bg-white\/50 {
+  background-color: rgba(6, 7, 12, 0.5) !important;
+}
+
+html[data-theme='dark'] .bg-white\/80,
+html[data-theme='dark'] .md\:bg-white\/80 {
+  background-color: rgba(6, 7, 12, 0.8) !important;
+}
+
+html[data-theme='dark'] .border-2.border-\[\#071E26\] {
+  border-color: #17A2B8 !important;
+}
+
+html[data-theme='dark'] .hover\:text-\[\#071E26\]:hover {
+  color: #17A2B8 !important;
+}
+
+html[data-theme='dark'] .hover\:bg-\[\#071E26\]:hover {
+  background-color: #17A2B8 !important;
+  color: #06070C !important;
+}
+
+html[data-theme='dark'] .border-t.border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}

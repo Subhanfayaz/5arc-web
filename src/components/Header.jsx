@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe, Smartphone, Search } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe, Smartphone, Search, Sun, Moon } from 'lucide-react';
 import logoImg from "../assets/logof.png";
+import { useTheme } from '../ThemeContext';
 
 
 export default function Header() {
+  const { darkMode, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -134,6 +136,22 @@ export default function Header() {
             About
           </button>
 
+          {/* Theme Toggle Slider */}
+          <button
+            onClick={toggleTheme}
+            className="relative inline-flex items-center h-7 w-14 rounded-full transition-colors duration-300 focus:outline-none cursor-pointer"
+            style={{ backgroundColor: darkMode ? '#17A2B8' : '#ffffff40' }}
+            aria-label="Toggle Dark Mode"
+          >
+            <span
+              className={`inline-flex items-center justify-center w-5 h-5 rounded-full bg-white transition-transform duration-300 transform ${
+                darkMode ? 'translate-x-8' : 'translate-x-1'
+              }`}
+            >
+              {darkMode ? <Moon size={12} className="text-[#071E26]" /> : <Sun size={12} className="text-[#071E26]" />}
+            </span>
+          </button>
+
           <button
             onClick={() => handleHashLink('contact')}
             className="bg-white text-[#071E26] px-6 py-2 rounded-full font-semibold border-2 border-white hover:bg-[#071E26] hover:text-white transition-all duration-300 cursor-pointer"
@@ -189,6 +207,25 @@ export default function Header() {
           >
             About
           </button>
+
+          {/* Mobile Theme Toggle */}
+          <div className="py-2 flex items-center justify-between text-white/80">
+            <span className="text-lg font-medium">Dark Mode</span>
+            <button
+              onClick={toggleTheme}
+              className="relative inline-flex items-center h-7 w-14 rounded-full transition-colors duration-300 focus:outline-none cursor-pointer"
+              style={{ backgroundColor: darkMode ? '#17A2B8' : '#ffffff40' }}
+              aria-label="Toggle Dark Mode"
+            >
+              <span
+                className={`inline-flex items-center justify-center w-5 h-5 rounded-full bg-white transition-transform duration-300 transform ${
+                  darkMode ? 'translate-x-8' : 'translate-x-1'
+                }`}
+              >
+                {darkMode ? <Moon size={12} className="text-[#071E26]" /> : <Sun size={12} className="text-[#071E26]" />}
+              </span>
+            </button>
+          </div>
 
           <button
             onClick={() => handleHashLink('contact')}
