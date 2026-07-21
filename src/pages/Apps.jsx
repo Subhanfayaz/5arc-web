@@ -3,6 +3,8 @@ import ParticlesBackground from '../components/ParticlesBackground';
 import { Smartphone, Repeat, Rocket, Search, Palette, Code, ShieldCheck, CheckCircle } from 'lucide-react';
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
 import AppContent from '../components/Appcontent';
+import FAQ from '../components/FAQ';
+import { appsFAQs } from '../data/faqData';
 
 
 export default function Apps() {
@@ -197,6 +199,12 @@ export default function Apps() {
           ))}
         </ScrollStack>
       </section>
+
+      <FAQ 
+  faqs={appsFAQs} 
+  title="Mobile Development FAQs"
+  subtitle="Everything you need to know about app development with us"
+/>
 
       {/* CTA Section */}
       <section className="relative z-10 py-20 px-6">

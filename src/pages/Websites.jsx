@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import { Code, ShoppingCart, Cloud, CheckCircle } from 'lucide-react';
 import WebsiteContent from '../components/Websitecontent';
+import FAQ from '../components/FAQ';
+import { websiteFAQs } from '../data/faqData';
 
 export default function Websites() {
   const location = useLocation();
@@ -122,6 +124,13 @@ export default function Websites() {
 </section>
 
 <WebsiteContent />
+
+{/* FAQ Section */}
+      <FAQ 
+        faqs={websiteFAQs} 
+        title="Website Development FAQs"
+        subtitle="Common questions about our web development services and process"
+      />
 
       {/* CTA Section */}
       <section className="relative z-10 py-20 px-6">

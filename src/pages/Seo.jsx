@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import { Search, FileText, Settings, BarChart3, TrendingUp, Target, CheckCircle, ArrowUpRight } from 'lucide-react';
 import SeoContentSection from '../components/SeoContentSection';
+import FAQ from '../components/FAQ';
+import { seoFAQs } from '../data/faqData';
 
 export default function Seo() {
   const location = useLocation();
@@ -184,6 +186,12 @@ export default function Seo() {
 </section>
 
 <SeoContentSection />
+
+<FAQ 
+  faqs={seoFAQs} 
+  title="SEO FAQs"
+  subtitle="Answers to frequently asked questions about our SEO services"
+/>
 
       {/* CTA Section */}
       <section className="relative z-10 py-20 px-6">

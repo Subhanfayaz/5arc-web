@@ -160,10 +160,27 @@ export default function Header() {
           </button>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile Nav Actions (Theme + Menu) */}
+        <div className="md:hidden flex items-center gap-4">
+          <button
+            onClick={toggleTheme}
+            className="relative inline-flex items-center h-7 w-14 rounded-full transition-colors duration-300 focus:outline-none cursor-pointer"
+            style={{ backgroundColor: darkMode ? '#17A2B8' : '#ffffff40' }}
+            aria-label="Toggle Dark Mode"
+          >
+            <span
+              className={`inline-flex items-center justify-center w-5 h-5 rounded-full bg-white transition-transform duration-300 transform ${
+                darkMode ? 'translate-x-8' : 'translate-x-1'
+              }`}
+            >
+              {darkMode ? <Moon size={12} className="text-[#071E26]" /> : <Sun size={12} className="text-[#071E26]" />}
+            </span>
+          </button>
+
+          <button className="text-white" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav Overlay */}
@@ -208,24 +225,7 @@ export default function Header() {
             About
           </button>
 
-          {/* Mobile Theme Toggle */}
-          <div className="py-2 flex items-center justify-between text-white/80">
-            <span className="text-lg font-medium">Dark Mode</span>
-            <button
-              onClick={toggleTheme}
-              className="relative inline-flex items-center h-7 w-14 rounded-full transition-colors duration-300 focus:outline-none cursor-pointer"
-              style={{ backgroundColor: darkMode ? '#17A2B8' : '#ffffff40' }}
-              aria-label="Toggle Dark Mode"
-            >
-              <span
-                className={`inline-flex items-center justify-center w-5 h-5 rounded-full bg-white transition-transform duration-300 transform ${
-                  darkMode ? 'translate-x-8' : 'translate-x-1'
-                }`}
-              >
-                {darkMode ? <Moon size={12} className="text-[#071E26]" /> : <Sun size={12} className="text-[#071E26]" />}
-              </span>
-            </button>
-          </div>
+
 
           <button
             onClick={() => handleHashLink('contact')}
