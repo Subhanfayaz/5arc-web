@@ -7,6 +7,15 @@ import Apps from './pages/Apps';
 import Seo from './pages/Seo';
 import ScrollToTop from './components/ScrollToTop';
 
+// Handle GitHub Pages SPA redirect query parameters
+(function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var p = urlParams.get('p');
+  if (p) {
+    window.history.replaceState(null, null, p);
+  }
+})();
+
 export default function App() {
   return (
     <div className="flex flex-col min-h-screen">
