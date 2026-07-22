@@ -111,11 +111,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <Phone size={20} className="text-[#17A2B8]" />
-                <a href="tel:+15552345678" className="hover:text-white transition-colors">+1 (555) 234-5678</a>
+                <a href="tel:+15102446744" className="hover:text-white transition-colors">+1 (510) 244-6744</a>
               </li>
               <li className="flex items-start gap-3 text-white/80">
                 <MapPin size={20} className="text-[#17A2B8] shrink-0 mt-1" />
-                <span>San Francisco, CA</span>
+                <span>Dallas, TX</span>
               </li>
             </ul>
           </div>
