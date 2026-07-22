@@ -5,6 +5,7 @@ import Lightning from '../components/Lightning';
 import { useState, useEffect, useRef } from 'react';
 import Homecontent from '../components/Homecontent';
 import emailjs from '@emailjs/browser';
+import SEO from '../components/SEO';
 
 function TestimonialsCarousel({ testimonials }) {
   const [index, setIndex] = useState(0);
@@ -295,6 +296,12 @@ export default function Home() {
 
   return (
     <div className="w-full bg-white overflow-hidden">
+      <SEO
+        title="5ARCS — Custom Web Development, Mobile Apps & SEO Agency"
+        description="5ARCS is a premier digital product agency engineering high-impact websites, mobile applications, and SEO strategies designed to scale your business."
+        keywords="web development agency, mobile app development, SEO services, custom software development"
+        url="/"
+      />
       
       {/* 1. Hero Section */}
       <section className="relative w-full h-screen min-h-[600px] flex items-center bg-[#071E26] z-20">
@@ -609,7 +616,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-[#071E26] mb-1">Call Us</h4>
-                    <a href="tel:+15552345678" className="text-gray-600 hover:text-[#071E26] transition">+1 (555) 234-5678</a>
+                    <a href="tel:+1(510) 244-6744" className="text-gray-600 hover:text-[#071E26] transition">+1 (510) 244-6744</a>
                   </div>
                 </div>
                 <div className="bg-[#F0F7F8] p-6 rounded-2xl flex items-start gap-4">

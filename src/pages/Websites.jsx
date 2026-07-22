@@ -4,6 +4,7 @@ import { Code, ShoppingCart, Cloud, CheckCircle } from 'lucide-react';
 import WebsiteContent from '../components/Websitecontent';
 import FAQ from '../components/FAQ';
 import { websiteFAQs } from '../data/faqData';
+import SEO from '../components/SEO';
 
 export default function Websites() {
   const location = useLocation();
@@ -44,6 +45,12 @@ export default function Websites() {
 
   return (
     <div className="relative min-h-screen bg-white">
+      <SEO
+        title="Website Development Services — Custom React Websites | 5ARCS"
+        description="Tailored, high-performance websites built with React, Next.js, and modern frameworks. Custom web development, e-commerce, and SaaS platforms engineered for growth."
+        keywords="custom web development, React development, e-commerce development, SaaS development, progressive web apps"
+        url="/websites"
+      />
       <ParticlesBackground variant="constellation" />
 
       {/* Hero Section */}

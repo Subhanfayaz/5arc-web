@@ -2,14 +2,92 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="src/assets/fav.png" />
+    <link rel="icon" type="image/png" href="/src/assets/fav.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="5ARCS — A premier digital product agency engineering high-impact websites and mobile applications designed to scale your business." />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>5ARCS</title>
+    <meta name="description" content="5ARCS is a premier digital product agency engineering high-impact websites, mobile applications, and SEO strategies designed to scale your business." />
+    <meta name="keywords" content="web development, mobile app development, SEO agency, custom software, React development, SaaS development" />
+    <meta name="author" content="5ARCS" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#071E26" />
+    <link rel="canonical" href="https://5arcs.net/" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://5arcs.net/" />
+    <meta property="og:title" content="5ARCS — Custom Web Development, Mobile Apps & SEO Agency" />
+    <meta property="og:description" content="A premier digital product agency engineering high-impact websites and mobile applications designed to scale your business." />
+    <meta property="og:image" content="https://5arcs.net/og-image.jpg" />
+    <meta property="og:site_name" content="5ARCS" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="5ARCS — Custom Web Development, Mobile Apps & SEO Agency" />
+    <meta name="twitter:description" content="A premier digital product agency engineering high-impact websites and mobile applications designed to scale your business." />
+    <meta name="twitter:image" content="https://5arcs.net/og-image.jpg" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <title>5ARCS</title>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "5ARCS",
+      "url": "https://5arcs.net/",
+      "logo": "https://5arcs.net/logo.png",
+      "description": "5ARCS is a premier digital product agency engineering high-impact websites, mobile applications, and SEO strategies designed to scale your business.",
+      "sameAs": [
+        "https://www.linkedin.com/company/5arcs",
+        "https://www.instagram.com/5arcs",
+        "https://twitter.com/5arcs"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Web Development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mobile App Development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "SEO Optimization"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Decoder script for GitHub Pages SPA redirect -->
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(
+            null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
   </head>
   <body>
     <div id="root"></div>

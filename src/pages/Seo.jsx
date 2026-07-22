@@ -4,6 +4,7 @@ import { Search, FileText, Settings, BarChart3, TrendingUp, Target, CheckCircle,
 import SeoContentSection from '../components/SeoContentSection';
 import FAQ from '../components/FAQ';
 import { seoFAQs } from '../data/faqData';
+import SEO from '../components/SEO';
 
 export default function Seo() {
   const location = useLocation();
@@ -74,6 +75,12 @@ export default function Seo() {
 
   return (
     <div className="relative min-h-screen bg-white">
+      <SEO
+        title="SEO Services — Rank Higher & Drive Organic Growth | 5ARCS"
+        description="Data-driven SEO strategies covering on-page, technical, and content optimization. We help businesses dominate search rankings and grow organic traffic."
+        keywords="SEO agency, technical SEO, on-page SEO, content strategy, search engine optimization services"
+        url="/seo"
+      />
       <ParticlesBackground variant="network" />
 
       {/* Hero Section */}

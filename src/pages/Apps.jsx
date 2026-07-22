@@ -5,6 +5,7 @@ import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
 import AppContent from '../components/Appcontent';
 import FAQ from '../components/FAQ';
 import { appsFAQs } from '../data/faqData';
+import SEO from '../components/SEO';
 
 
 export default function Apps() {
@@ -75,6 +76,12 @@ export default function Apps() {
 
   return (
     <div className="relative min-h-screen bg-white">
+      <SEO
+        title="Mobile App Development — iOS, Android & Cross-Platform | 5ARCS"
+        description="Native and cross-platform mobile app development using Swift, Kotlin, React Native, and Flutter. From MVP to app store launch, we build apps users love."
+        keywords="mobile app development, iOS app development, Android app development, React Native, Flutter apps"
+        url="/apps"
+      />
       <ParticlesBackground variant="bokeh" />
 
       {/* Hero Section */}
