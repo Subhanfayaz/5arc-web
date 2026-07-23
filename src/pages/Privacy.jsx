@@ -1,4 +1,3 @@
-
 import ParticlesBackground from '../components/ParticlesBackground';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
