@@ -6,45 +6,79 @@ import { useState, useEffect, useRef } from 'react';
 import Homecontent from '../components/Homecontent';
 import emailjs from '@emailjs/browser';
 import SEO from '../components/SEO';
+import TrustedBy from '../components/TrustedBy';
 
 function TestimonialsCarousel({ testimonials }) {
   const [index, setIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const timerRef = useRef(null);
+  const touchStartX = useRef(null);
 
-  const goNext = () => setIndex(prev => (prev + 1) % testimonials.length);
-  const goPrev = () => setIndex(prev => (prev - 1 + testimonials.length) % testimonials.length);
+  const startTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setIndex(prev => (prev + 1) % testimonials.length);
+    }, 5000);
+  };
 
   useEffect(() => {
-    timerRef.current = setInterval(goNext, 3000);
+    startTimer();
     return () => clearInterval(timerRef.current);
-  }, [index]);
+  }, []);
 
-  const handleManualNav = (fn) => {
-    clearInterval(timerRef.current);
-    fn();
+  const goTo = (newIndex) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setIndex((newIndex + testimonials.length) % testimonials.length);
+    startTimer();
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const goNext = () => goTo(index + 1);
+  const goPrev = () => goTo(index - 1);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goNext() : goPrev();
+    }
+    touchStartX.current = null;
   };
 
   return (
     <div className="relative max-w-2xl mx-auto">
+
+      {/* Prev Button */}
       <button
-        onClick={() => handleManualNav(goPrev)}
+        onClick={goPrev}
         aria-label="Previous testimonial"
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-14 z-10 w-11 h-11 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:bg-[#071E26] hover:text-white transition-colors duration-300 text-[#071E26]"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-14 z-10 w-11 h-11 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:bg-[#071E26] hover:text-white transition-colors duration-300 text-[#071E26] cursor-pointer"
       >
         <ChevronLeft size={22} />
       </button>
 
+      {/* Next Button */}
       <button
-        onClick={() => handleManualNav(goNext)}
+        onClick={goNext}
         aria-label="Next testimonial"
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-14 z-10 w-11 h-11 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:bg-[#071E26] hover:text-white transition-colors duration-300 text-[#071E26]"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-14 z-10 w-11 h-11 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:bg-[#071E26] hover:text-white transition-colors duration-300 text-[#071E26] cursor-pointer"
       >
         <ChevronRight size={22} />
       </button>
 
-      <div className="overflow-hidden rounded-2xl">
+      {/* Cards with swipe support */}
+      <div
+        className="overflow-hidden rounded-2xl"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <div
-          className="flex transition-transform duration-500 ease-out"
+          className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {testimonials.map((t, idx) => (
@@ -67,13 +101,14 @@ function TestimonialsCarousel({ testimonials }) {
         </div>
       </div>
 
+      {/* Dots */}
       <div className="flex justify-center gap-2 mt-6">
         {testimonials.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => handleManualNav(() => setIndex(idx))}
+            onClick={() => goTo(idx)}
             aria-label={`Go to testimonial ${idx + 1}`}
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
               idx === index ? 'w-6 bg-[#071E26]' : 'w-2 bg-gray-300'
             }`}
           />
@@ -500,6 +535,8 @@ export default function Home() {
           </div>
         </section>
 
+        <TrustedBy />
+
         {/* 6. Testimonials */}
         <section className="py-24 px-6 relative">
           <div className="absolute inset-0 bg-[#F0F7F8] opacity-50 -z-10"></div>
@@ -510,7 +547,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 7. Contact Form (UPDATED WITH EMAILJS HANDLER AND REF) */}
+        {/* 7. Contact Form */}
         <section id="contact" className="py-24 px-6 relative">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">

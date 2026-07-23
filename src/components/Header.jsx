@@ -74,6 +74,8 @@ export default function Header() {
   };
 
   const isServicePage = ['/websites', '/apps', '/seo'].includes(location.pathname);
+  const isAboutPage = location.pathname === '/about';
+  const isContactPage = location.pathname === '/contact';
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0E5D6C]/95 backdrop-blur-md shadow-lg py-3' : 'bg-[#0E5D6C] py-5'}`}>
@@ -129,12 +131,12 @@ export default function Header() {
             </div>
           </div>
 
-          <button
-            onClick={() => handleHashLink('about')}
-            className="text-white/80 hover:text-white transition-colors duration-300 font-medium cursor-pointer bg-transparent border-none"
+          <Link
+            to="/about"
+            className={`transition-colors duration-300 font-medium ${isAboutPage ? 'text-white border-b-2 border-white' : 'text-white/80 hover:text-white'}`}
           >
             About
-          </button>
+          </Link>
 
           {/* Theme Toggle Slider */}
           <button
@@ -152,12 +154,12 @@ export default function Header() {
             </span>
           </button>
 
-          <button
-            onClick={() => handleHashLink('contact')}
-            className="bg-white text-[#071E26] px-6 py-2 rounded-full font-semibold border-2 border-white hover:bg-[#071E26] hover:text-white transition-all duration-300 cursor-pointer"
+          <Link
+            to="/contact"
+            className={`px-6 py-2 rounded-full font-semibold border-2 border-white transition-all duration-300 ${isContactPage ? 'bg-[#071E26] text-white' : 'bg-white text-[#071E26] hover:bg-[#071E26] hover:text-white'}`}
           >
-            Get in Touch
-          </button>
+            Contact
+          </Link>
         </nav>
 
         {/* Mobile Nav Actions (Theme + Menu) */}
@@ -218,21 +220,23 @@ export default function Header() {
             </div>
           </div>
 
-          <button
-            onClick={() => handleHashLink('about')}
-            className="text-white/80 text-lg font-medium py-2 text-left bg-transparent border-none cursor-pointer"
+          <Link
+            to="/about"
+            onClick={() => setIsOpen(false)}
+            className={`text-white text-lg font-medium py-2 ${isAboutPage ? 'opacity-100' : 'opacity-80'}`}
           >
             About
-          </button>
+          </Link>
 
 
 
-          <button
-            onClick={() => handleHashLink('contact')}
-            className="bg-white text-[#071E26] text-center px-6 py-3 rounded-full font-semibold mt-2 border-2 border-white hover:bg-[#071E26] hover:text-white transition-all duration-300 cursor-pointer"
+          <Link
+            to="/contact"
+            onClick={() => setIsOpen(false)}
+            className="block bg-white text-[#071E26] text-center px-6 py-3 rounded-full font-semibold mt-2 border-2 border-white hover:bg-[#071E26] hover:text-white transition-all duration-300"
           >
-            Get in Touch
-          </button>
+            Contact
+          </Link>
         </div>
       </div>
     </header>

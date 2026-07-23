@@ -57,6 +57,29 @@ body {
   animation: marquee 25s linear infinite;
 }
 
+@keyframes testimonialsScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollPartners {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-partners {
+  animation: scrollPartners 35s linear infinite;
+}
+
+/* Pause animation when hovering over the ticker */
+.animate-partners:hover {
+  animation-play-state: paused;
+}
+
 /* --- Dark Theme Overrides --- */
 html[data-theme='dark'] body,
 html[data-theme='dark'] .bg-white {

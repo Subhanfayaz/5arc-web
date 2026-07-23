@@ -73,20 +73,20 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link to="/" className="text-white/80 hover:text-white transition-colors duration-300">Home</Link></li>
               <li>
-                <button 
-                  onClick={() => handleHashLink('about')} 
-                  className="text-white/80 hover:text-white transition-colors duration-300 bg-transparent border-none p-0 cursor-pointer text-left block w-full"
+                <Link 
+                  to="/about" 
+                  className="text-white/80 hover:text-white transition-colors duration-300"
                 >
                   About
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleHashLink('contact')} 
-                  className="text-white/80 hover:text-white transition-colors duration-300 bg-transparent border-none p-0 cursor-pointer text-left block w-full"
+                <Link 
+                  to="/contact" 
+                  className="text-white/80 hover:text-white transition-colors duration-300"
                 >
                   Contact
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
@@ -123,6 +123,10 @@ export default function Footer() {
 
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/60 text-sm">
           <p>© 2026 5ARCS. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
+          </div>
           <p>Crafted with precision.</p>
         </div>
       </div>

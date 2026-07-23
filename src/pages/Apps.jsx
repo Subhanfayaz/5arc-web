@@ -126,7 +126,7 @@ export default function Apps() {
           {/* Single Get Started button below all cards */}
           <div className="flex justify-center mt-12">
             <button
-              onClick={() => handleHashLink('contact')}
+              onClick={() => navigate('/contact')}
               className="bg-[#071E26] text-white px-10 py-4 rounded-full font-bold border-2 border-[#071E26] hover:bg-white hover:text-[#071E26] transition-all duration-300 cursor-pointer"
             >
               Get Started
@@ -222,7 +222,7 @@ export default function Apps() {
               Let's turn your concept into a product that users can't put down.
             </p>
             <button
-              onClick={() => handleHashLink('contact')}
+              onClick={() => navigate('/contact')}
               className="bg-white text-[#071E26] px-8 py-4 rounded-full font-bold border-2 border-white hover:bg-transparent hover:text-white transition-all duration-300 cursor-pointer"
             >
               Get Started
