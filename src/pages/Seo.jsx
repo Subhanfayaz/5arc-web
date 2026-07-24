@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
-import { Search, FileText, Settings, BarChart3, TrendingUp, Target, CheckCircle, ArrowUpRight } from 'lucide-react';
+import { Search, FileText, Settings, BarChart3, TrendingUp, Target, CheckCircle, ArrowUpRight, Star } from 'lucide-react';
 import SeoContentSection from '../components/SeoContentSection';
 import FAQ from '../components/FAQ';
 import { seoFAQs } from '../data/faqData';
@@ -63,6 +63,68 @@ export default function Seo() {
     'Screaming Frog', 'Moz Pro', 'Surfer SEO', 'Google PageSpeed',
   ];
 
+  const pricingPackages = [
+    {
+      name: 'Basic',
+      price: 129,
+      cutPrice: 199,
+      bestFor: 'Small local businesses and startups looking to establish basic search engine visibility.',
+      features: [
+        'Initial SEO audit & keyword research (up to 10 keywords)',
+        'On-page optimization (titles, descriptions, headers)',
+        'Google Business Profile setup & optimization',
+        'Monthly progress tracking report',
+      ],
+      deliverable: 'Foundational optimization to help local customers find your business online.',
+      highlighted: false,
+    },
+    {
+      name: 'Standard',
+      price: 199,
+      cutPrice: 299,
+      bestFor: 'Growing businesses looking to increase organic traffic and rank for competitive keywords.',
+      features: [
+        'Keyword research & competitor analysis (up to 25 keywords)',
+        'Advanced on-page & technical SEO fixes',
+        'Content optimization & meta tag refinement',
+        'Local SEO & directory submissions',
+        'Bi-weekly performance & ranking reports',
+      ],
+      deliverable: 'A steady increase in organic visibility and targeted search traffic.',
+      highlighted: true,
+    },
+    {
+      name: 'Advanced',
+      price: 349,
+      cutPrice: 449,
+      bestFor: 'Established companies and e-commerce brands scaling their digital reach and lead generation.',
+      features: [
+        'Keyword strategy & mapping (up to 50 keywords)',
+        'Technical SEO audit & continuous monitoring',
+        'Authority-building & off-page SEO outreach',
+        'Conversion rate optimization (CRO) insights',
+        'Weekly reporting & strategy consultations',
+      ],
+      deliverable: 'High-tier optimization focused on search dominance and conversions.',
+      highlighted: false,
+    },
+    {
+      name: 'Premium',
+      price: 599,
+      cutPrice: 699,
+      bestFor: 'Enterprises and large-scale digital platforms demanding aggressive market growth.',
+      features: [
+        'Unlimited keyword tracking & enterprise strategy',
+        'Full technical architecture optimization',
+        'Advanced link-building & digital PR outreach',
+        'Dedicated SEO manager & custom funnels',
+        'Real-time analytics dashboard & weekly reviews',
+      ],
+      deliverable: 'Maximum market authority, top-tier rankings, and organic ROI.',
+      highlighted: false,
+    },
+  ];
+
   const handleHashLink = (hash) => {
     if (location.pathname === '/') {
       const el = document.getElementById(hash);
@@ -121,15 +183,87 @@ export default function Seo() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Single Get Started button below all cards */}
-          <div className="flex justify-center mt-12">
-            <button
-              onClick={() => navigate('/contact')}
-              className="bg-[#071E26] text-white px-10 py-4 rounded-full font-bold border-2 border-[#071E26] hover:bg-white hover:text-[#071E26] transition-all duration-300 cursor-pointer"
-            >
-              Get Started
-            </button>
+      {/* Pricing Section */}
+      <section className="relative z-10 py-20 px-6 bg-white md:bg-white/50 md:backdrop-blur-sm">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <span className="bg-[#E7F2F4] text-[#071E26] px-4 py-1.5 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase inline-block">
+              Limited-Time Pricing
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#071E26] mb-4">SEO Packages</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Transparent, one-time pricing built to match where your business is today and where you're headed.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            {pricingPackages.map((pkg, idx) => (
+              <div
+                key={idx}
+                className={`relative rounded-2xl p-8 flex flex-col h-full transition-all duration-300 ${
+                  pkg.highlighted
+                    ? 'bg-[#071E26] text-white shadow-2xl lg:-translate-y-3'
+                    : 'bg-white border border-gray-100 text-[#071E26] hover:shadow-xl hover:-translate-y-1'
+                }`}
+              >
+                {pkg.highlighted && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#17A2B8] text-white text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-1 whitespace-nowrap">
+                    <Star size={12} className="fill-white" /> Most Popular
+                  </span>
+                )}
+
+                <h3 className={`text-xl font-bold mb-2 ${pkg.highlighted ? 'text-white' : 'text-[#071E26]'}`}>
+                  {pkg.name}
+                </h3>
+
+                <p className={`text-sm mb-6 leading-relaxed ${pkg.highlighted ? 'text-white/70' : 'text-gray-600'}`}>
+                  {pkg.bestFor}
+                </p>
+
+                <div className="mb-6 flex items-baseline gap-2 flex-wrap">
+                  <span className={`text-4xl font-extrabold ${pkg.highlighted ? 'text-white' : 'text-[#071E26]'}`}>
+                    ${pkg.price}
+                  </span>
+                  <span className={`text-sm ${pkg.highlighted ? 'text-white/60' : 'text-gray-500'}`}>one-time</span>
+                  <span className={`text-sm line-through ${pkg.highlighted ? 'text-white/40' : 'text-gray-400'}`}>
+                    ${pkg.cutPrice}
+                  </span>
+                </div>
+
+                <ul className="space-y-3 mb-8 flex-1">
+                  {pkg.features.map((feature, fIdx) => (
+                    <li
+                      key={fIdx}
+                      className={`flex items-start gap-2.5 text-sm ${pkg.highlighted ? 'text-white/90' : 'text-[#071E26]'}`}
+                    >
+                      <CheckCircle
+                        size={16}
+                        className={`mt-0.5 flex-shrink-0 ${pkg.highlighted ? 'text-[#17A2B8]' : 'text-[#17A2B8]'}`}
+                      />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className={`text-xs mb-6 leading-relaxed ${pkg.highlighted ? 'text-white/60' : 'text-gray-500'}`}>
+                  {pkg.deliverable}
+                </p>
+
+                <button
+                  onClick={() => navigate('/contact')}
+                  className={`w-full py-3 rounded-full font-bold border-2 transition-all duration-300 cursor-pointer ${
+                    pkg.highlighted
+                      ? 'bg-white text-[#071E26] border-white hover:bg-transparent hover:text-white'
+                      : 'bg-[#071E26] text-white border-[#071E26] hover:bg-white hover:text-[#071E26]'
+                  }`}
+                >
+                  Get Started
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -167,38 +301,38 @@ export default function Seo() {
       </section>
 
       {/* Tools & Platforms */}
-<section className="relative z-10 py-20 px-6 overflow-hidden">
-  <div className="container mx-auto text-center mb-12">
-    <h2 className="text-3xl md:text-4xl font-bold text-[#071E26]">Tools & Platforms We Use</h2>
-  </div>
-
-  {/* Moving ticker */}
-  <div className="relative w-full overflow-hidden">
-    {/* Left fade */}
-    <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-    {/* Right fade */}
-    <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-    <div className="flex w-max animate-marquee gap-4">
-      {[...tools, ...tools].map((tool, idx) => (
-        <div
-          key={idx}
-          className="bg-white border border-gray-200 rounded-xl px-6 py-3 flex items-center gap-2 font-medium text-[#071E26] hover:border-[#071E26] hover:shadow-md transition-all duration-300 whitespace-nowrap cursor-default"
-        >
-          {tool}
+      <section className="relative z-10 py-20 px-6 overflow-hidden">
+        <div className="container mx-auto text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#071E26]">Tools & Platforms We Use</h2>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
 
-<SeoContentSection />
+        {/* Moving ticker */}
+        <div className="relative w-full overflow-hidden">
+          {/* Left fade */}
+          <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          {/* Right fade */}
+          <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-<FAQ 
-  faqs={seoFAQs} 
-  title="SEO FAQs"
-  subtitle="Answers to frequently asked questions about our SEO services"
-/>
+          <div className="flex w-max animate-marquee gap-4">
+            {[...tools, ...tools].map((tool, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-gray-200 rounded-xl px-6 py-3 flex items-center gap-2 font-medium text-[#071E26] hover:border-[#071E26] hover:shadow-md transition-all duration-300 whitespace-nowrap cursor-default"
+              >
+                {tool}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SeoContentSection />
+
+      <FAQ
+        faqs={seoFAQs}
+        title="SEO FAQs"
+        subtitle="Answers to frequently asked questions about our SEO services"
+      />
 
       {/* CTA Section */}
       <section className="relative z-10 py-20 px-6">
@@ -219,4 +353,4 @@ export default function Seo() {
       </section>
     </div>
   );
-}2
+}

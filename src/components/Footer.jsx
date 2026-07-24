@@ -97,7 +97,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link to="/websites" className="text-white/80 hover:text-white transition-colors duration-300">Website Development</Link></li>
               <li><Link to="/apps" className="text-white/80 hover:text-white transition-colors duration-300">Mobile Applications</Link></li>
-              <li><Link to="/seo" className="text-white/80 hover:text-white transition-colors duration-300">SEO Optimization</Link></li>
+              <li><Link to="/seo" className="text-white/80 hover:text-white transition-colors duration-300">Search Engine Optimization</Link></li>
             </ul>
           </div>
 

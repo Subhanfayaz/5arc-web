@@ -50,7 +50,7 @@ export default function Header() {
   const serviceLinks = [
     { name: 'Website Development', path: '/websites', icon: <Globe size={18} /> },
     { name: 'Mobile Applications', path: '/apps', icon: <Smartphone size={18} /> },
-    { name: 'SEO Optimization', path: '/seo', icon: <Search size={18} /> },
+    { name: 'Search Engine Optimization', path: '/seo', icon: <Search size={18} /> },
   ];
 
   const handleHashLink = (hash) => {
