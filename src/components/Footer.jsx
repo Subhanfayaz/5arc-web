@@ -36,7 +36,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 mt-2">
               <a
-                href="https://www.facebook.com/people/5arcs/61592066397527/?mibextid=wwXIfr"
+                href="https://www.facebook.com/share/19g5D9tg9W/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -46,7 +46,7 @@ export default function Footer() {
               </a>
               
               <a
-                href="https://www.instagram.com/5arcs_/"
+                href="https://www.instagram.com/5.arcs/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
