@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import PackageDetails from './pages/PackageDetails';
 import ScrollToTop from './components/ScrollToTop';
 
 // Handle GitHub Pages SPA redirect query parameters
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/package/:id" element={<PackageDetails />} />
         </Routes>
       </main>
       <Footer />

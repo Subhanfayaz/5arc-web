@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
-import { Code, ShoppingCart, Cloud, CheckCircle, Zap, Star, TrendingUp, Building2 } from 'lucide-react';
+import { Code, ShoppingCart, Cloud, CheckCircle } from 'lucide-react';
+import { websitePackages } from '../data/packagesData';
 import WebsiteContent from '../components/Websitecontent';
 import FAQ from '../components/FAQ';
 import { websiteFAQs } from '../data/faqData';
@@ -31,82 +32,7 @@ export default function Websites() {
     },
   ];
 
-  const packages = [
-    {
-      name: 'Basic',
-      icon: <Zap size={24} className="text-[#17A2B8]" />,
-      price: '$199',
-      originalPrice: '$399',
-      priceNote: 'one-time',
-      pages: '1–3 Pages',
-      bestFor: 'Small businesses, startups, and personal brands looking for a clean, professional online presence.',
-      features: [
-        'Responsive design for mobile, tablet & desktop',
-        'Contact form & social media integration',
-        'Fast-loading modern tech structure',
-        'Fully functional ready-to-launch website',
-        'Basic maintenance guidance',
-      ],
-      cta: 'Get Started',
-      highlighted: false,
-    },
-    {
-      name: 'Standard',
-      icon: <TrendingUp size={24} className="text-white" />,
-      price: '$349',
-      originalPrice: '$449',
-      priceNote: 'one-time',
-      pages: '3–5 Pages',
-      bestFor: 'Growing businesses looking to expand their digital footprint and improve lead generation.',
-      features: [
-        'Professional multi-page layout with custom UI',
-        'Essential SEO optimization',
-        'CMS integration for easy updates',
-        'Enhanced contact forms & CTA sections',
-        'Growth-ready website for user engagement',
-      ],
-      cta: 'Get Started',
-      highlighted: true,
-    },
-    {
-      name: 'Premium',
-      icon: <Star size={24} className="text-[#17A2B8]" />,
-      price: '$799',
-      originalPrice: '$899',
-      priceNote: 'one-time',
-      pages: 'Up to 7 Pages',
-      bestFor: 'Established brands looking to scale conversions and provide advanced digital experiences.',
-      features: [
-        'Advanced UI/UX custom design',
-        'Comprehensive on-page & technical SEO',
-        'Interactive animations & dynamic visuals',
-        'Custom integrations (booking, analytics, CRM)',
-        'Priority deployment & performance optimization',
-        'High-conversion commercial website',
-      ],
-      cta: 'Get Started',
-      highlighted: false,
-    },
-    {
-      name: 'Custom',
-      icon: <Building2 size={24} className="text-[#17A2B8]" />,
-      price: 'Custom',
-      originalPrice: null,
-      priceNote: 'upon consultation',
-      pages: 'Fully Custom Scope',
-      bestFor: 'Enterprises and unique projects requiring bespoke software architecture, specialized web apps, or custom integrations.',
-      features: [
-        'Bespoke application & frontend architecture',
-        'Tailored workflows, database & custom APIs',
-        'Scalable infrastructure for heavy traffic',
-        'Complex business logic support',
-        'End-to-end development, testing & CI/CD',
-        'Dedicated development team support',
-      ],
-      cta: 'Get Consultation',
-      highlighted: false,
-    },
-  ];
+
 
   const techStack = ['React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'TypeScript', 'Express', 'MongoDB', 'PostgreSQL', 'AWS', 'Wordpress', 'Shopify', 'Stripe', 'PayPal', 'GraphQL', 'REST APIs'];
 
@@ -168,13 +94,13 @@ export default function Websites() {
     </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
-            {packages.map((pkg, idx) => (
+            {websitePackages.map((pkg, idx) => (
               <div
                 key={idx}
-                className={`relative rounded-2xl flex flex-col transition-all duration-300 ${
+                className={`relative rounded-2xl flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
                   pkg.highlighted
-                    ? 'bg-[#071E26] shadow-2xl border-2 border-[#17A2B8] lg:-translate-y-2'
-                    : 'bg-white border border-gray-200 shadow-md hover:shadow-xl'
+                    ? 'bg-[#071E26] shadow-xl border-2 border-[#17A2B8] lg:-translate-y-1'
+                    : 'bg-white border border-gray-200 shadow-md'
                 }`}
               >
                 {/* Popular badge */}
@@ -241,7 +167,7 @@ export default function Websites() {
 
                   {/* CTA Button */}
                   <button
-                    onClick={() => navigate('/contact')}
+                    onClick={() => navigate(`/package/${pkg.id}`)}
                     className={`w-full py-3 rounded-xl font-bold border-2 transition-all duration-300 cursor-pointer ${
                       pkg.highlighted
                         ? 'bg-[#17A2B8] border-[#17A2B8] text-white hover:bg-transparent hover:text-[#17A2B8]'

@@ -119,8 +119,13 @@ html[data-theme='dark'] .border-gray-200 {
   border-color: #2D3748 !important;
 }
 
-html[data-theme='dark'] .bg-gray-50 {
+html[data-theme='dark'] .bg-gray-50,
+html[data-theme='dark'] .bg-\[\#F8FDFD\] {
   background-color: #0B111A !important;
+}
+
+html[data-theme='dark'] .border-\[\#E7F2F4\] {
+  border-color: #1A2530 !important;
 }
 
 html[data-theme='dark'] .from-white {

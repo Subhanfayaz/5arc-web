@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import { Search, FileText, Settings, BarChart3, TrendingUp, Target, CheckCircle, ArrowUpRight, Star } from 'lucide-react';
+import { seoPackages } from '../data/packagesData';
 import SeoContentSection from '../components/SeoContentSection';
 import FAQ from '../components/FAQ';
 import { seoFAQs } from '../data/faqData';
@@ -63,67 +64,7 @@ export default function Seo() {
     'Screaming Frog', 'Moz Pro', 'Surfer SEO', 'Google PageSpeed',
   ];
 
-  const pricingPackages = [
-    {
-      name: 'Basic',
-      price: 129,
-      cutPrice: 199,
-      bestFor: 'Small local businesses and startups looking to establish basic search engine visibility.',
-      features: [
-        'Initial SEO audit & keyword research (up to 10 keywords)',
-        'On-page optimization (titles, descriptions, headers)',
-        'Google Business Profile setup & optimization',
-        'Monthly progress tracking report',
-      ],
-      deliverable: 'Foundational optimization to help local customers find your business online.',
-      highlighted: false,
-    },
-    {
-      name: 'Standard',
-      price: 199,
-      cutPrice: 299,
-      bestFor: 'Growing businesses looking to increase organic traffic and rank for competitive keywords.',
-      features: [
-        'Keyword research & competitor analysis (up to 25 keywords)',
-        'Advanced on-page & technical SEO fixes',
-        'Content optimization & meta tag refinement',
-        'Local SEO & directory submissions',
-        'Bi-weekly performance & ranking reports',
-      ],
-      deliverable: 'A steady increase in organic visibility and targeted search traffic.',
-      highlighted: true,
-    },
-    {
-      name: 'Advanced',
-      price: 349,
-      cutPrice: 449,
-      bestFor: 'Established companies and e-commerce brands scaling their digital reach and lead generation.',
-      features: [
-        'Keyword strategy & mapping (up to 50 keywords)',
-        'Technical SEO audit & continuous monitoring',
-        'Authority-building & off-page SEO outreach',
-        'Conversion rate optimization (CRO) insights',
-        'Weekly reporting & strategy consultations',
-      ],
-      deliverable: 'High-tier optimization focused on search dominance and conversions.',
-      highlighted: false,
-    },
-    {
-      name: 'Premium',
-      price: 599,
-      cutPrice: 699,
-      bestFor: 'Enterprises and large-scale digital platforms demanding aggressive market growth.',
-      features: [
-        'Unlimited keyword tracking & enterprise strategy',
-        'Full technical architecture optimization',
-        'Advanced link-building & digital PR outreach',
-        'Dedicated SEO manager & custom funnels',
-        'Real-time analytics dashboard & weekly reviews',
-      ],
-      deliverable: 'Maximum market authority, top-tier rankings, and organic ROI.',
-      highlighted: false,
-    },
-  ];
+
 
   const handleHashLink = (hash) => {
     if (location.pathname === '/') {
@@ -200,13 +141,13 @@ export default function Seo() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-            {pricingPackages.map((pkg, idx) => (
+            {seoPackages.map((pkg, idx) => (
               <div
                 key={idx}
-                className={`relative rounded-2xl p-8 flex flex-col h-full transition-all duration-300 ${
+                className={`relative rounded-2xl p-8 flex flex-col h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
                   pkg.highlighted
-                    ? 'bg-[#071E26] text-white shadow-2xl lg:-translate-y-3'
-                    : 'bg-white border border-gray-100 text-[#071E26] hover:shadow-xl hover:-translate-y-1'
+                    ? 'bg-[#071E26] text-white shadow-xl lg:-translate-y-1'
+                    : 'bg-white border border-gray-100 text-[#071E26]'
                 }`}
               >
                 {pkg.highlighted && (
@@ -253,7 +194,7 @@ export default function Seo() {
                 </p>
 
                 <button
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate(`/package/${pkg.id}`)}
                   className={`w-full py-3 rounded-full font-bold border-2 transition-all duration-300 cursor-pointer ${
                     pkg.highlighted
                       ? 'bg-white text-[#071E26] border-white hover:bg-transparent hover:text-white'
