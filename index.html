@@ -92,7 +92,35 @@
     <link rel="stylesheet" crossorigin href="/assets/index-jSlh0swa.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!--
+        Static fallback content for crawlers/scanners that don't execute
+        JavaScript (e.g. Pomelli's website scanner). React will replace
+        this markup once main.jsx mounts, so normal visitors never see it.
+      -->
+      <header>
+        <h1>5ARCS</h1>
+        <p>Custom Web Development, Mobile Apps &amp; SEO Agency</p>
+      </header>
+      <main>
+        <section>
+          <h2>Who we are</h2>
+          <p>
+            5ARCS is a premier digital product agency engineering high-impact
+            websites, mobile applications, and SEO strategies designed to
+            scale your business.
+          </p>
+        </section>
+        <section>
+          <h2>What we do</h2>
+          <ul>
+            <li>Web Development</li>
+            <li>Mobile App Development</li>
+            <li>SEO Optimization</li>
+          </ul>
+        </section>
+      </main>
+    </div>
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
